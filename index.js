@@ -2,6 +2,8 @@ import fs from 'fs'
 import https from 'https'
 import express from 'express'
 
+//#region Server Domains and Connections
+
 const optionsServer = {
     key: fs.readFileSync('/etc/letsencrypt/live/diru.dev/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/diru.dev/fullchain.pem'),
@@ -46,4 +48,26 @@ credentialsWWW.listen(PORT_WWW, () => {
 
 serverCV.listen(PORT_CV, () => {
   console.log(`Servidor HTTPS para CV escuchando en el puerto: ${PORT_CV}`);
+});
+
+//#endregion
+
+app.use((req, res, next) => {
+    const subdomain = req.subdomains[0];
+    req.subdomain = subdomain;
+    console.log(subdomain);
+    next();
+  });
+
+  // Rutas para diferentes subdominios
+app.get('/', (req, res) => {
+    res.send('Bienvenido al landing page principal');
+  });
+  
+app.get('/www', (req, res) => {
+    res.send('Bienvenido al subdominio www');
+});
+  
+app.get('/cv', (req, res) => {
+    res.send('Bienvenido al subdominio cv');
 });
