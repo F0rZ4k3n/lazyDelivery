@@ -26,6 +26,14 @@ app.get("/", (req, res) => {
 
 httpServer.listen(80, () => {
 	console.log('HTTP Server running on port 80');
+
+    exec('certbot certonly --webroot -w / -d diru.dev', (err, stdout, stderr) => {
+        if (err) {
+          console.error(`Failed to get CertBot: ${stderr}`);
+        } else {
+          console.log(`Certified Succesfull: \n${stdout}`);
+        }
+      });
 });
 
 httpsServer.listen(443, () => {
