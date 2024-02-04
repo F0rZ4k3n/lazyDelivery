@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 
 })
 
-http.listen(80, () => {
+httpServer.listen(80, () => {
 	console.log('HTTP Server running on port 80');
 });
 
