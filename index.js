@@ -1,5 +1,6 @@
 import fs from 'fs'
 import https from 'https'
+import express from 'express'
 
 const optionsServer = {
     key: fs.readFileSync('/etc/letsencrypt/live/diru.dev/privkey.pem'),
@@ -7,7 +8,7 @@ const optionsServer = {
 };
   
 const server = https.createServer(optionsServer, (req, res) => {
-    res.end('Aqui estoy')
+    res.end("aqui estoy")
 });
 
 // Configuración para el primer subdominio
@@ -31,9 +32,9 @@ const serverSubdominio2 = https.createServer(credentialsCV, (req, res) => {
 });
 
 // Escuchar en puertos específicos
-const PORT_SERVER = 80
-const PORT_WWW = 443;
-const PORT_CV = 444;  // Puedes usar un puerto diferente para cada subdominio
+const PORT_SERVER = 443
+const PORT_WWW = 444;
+const PORT_CV = 445;  // Puedes usar un puerto diferente para cada subdominio
 
 server.listen(PORT_SERVER, () => {
     console.log(`Servidor HTTPS para el servidor principal escuchando en el puerto: ${PORT_SERVER}`);
