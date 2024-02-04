@@ -4,6 +4,7 @@ import http from "http"
 import https from "https"
 
 const app = express();
+app.use(express.static("public"))
 
 const privateKey = fs.readFileSync('/etc/letsencrypt/live/diru.dev/privkey.pem', 'utf8');
 const certificate = fs.readFileSync('/etc/letsencrypt/live/diru.dev/fullchain.pem', 'utf8');
@@ -20,7 +21,7 @@ const httpServer = http.createServer((req, res) => {
 });
 
 app.get("/", (req, res) => {
-
+    res.render("index.ejs")
 })
 
 httpServer.listen(80, () => {
