@@ -20,10 +20,10 @@ const httpServer = http.createServer((req, res) => {
 });
 
 app.get("/", (req, res) => {
-    
+
 })
 
-app.listen(80, () => {
+http.listen(80, () => {
 	console.log('HTTP Server running on port 80');
 });
 
