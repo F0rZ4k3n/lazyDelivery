@@ -16,6 +16,8 @@ const server = https.createServer(optionsServer, (req, res) => {
     console.log(req.url);
     if (req.url === '/') {
         res.writeHead(301, { "Location": `https://${req.headers['host']}${req.url}`});
+        res.render("index.ejs")
+        res.end();
     } else {
       // Maneja otras rutas aquí, por ejemplo, puedes devolver un 404
       res.writeHead(404, { 'Content-Type': 'text/plain' });
