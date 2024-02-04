@@ -1,6 +1,8 @@
 import fs from 'fs'
 import https from 'https'
 import express from 'express'
+const app = express();
+app.use(express.static("public"));
 
 //#region Server Domains and Connections
 
@@ -11,9 +13,9 @@ const optionsServer = {
 };
   
 const server = https.createServer(optionsServer, (req, res) => {
-    if (req.url === '/') {
+    if (req.url === '/public/index.ejs') {
       // Sirve un archivo HTML cuando accedes a la ruta principal
-      fs.readFile('index.ejs', 'utf8', (err, data) => {
+      fs.readFile('', 'utf8', (err, data) => {
         if (err) {
           console.error(err);
           res.writeHead(500, { 'Content-Type': 'text/plain' });
@@ -68,9 +70,6 @@ serverCV.listen(PORT_CV, () => {
 });
 
 //#endregion
-
-const app = express();
-app.use(express.static("public"));
 
   // Rutas para diferentes subdominios
 app.get('/', (req, res) => {
