@@ -52,6 +52,8 @@ serverCV.listen(PORT_CV, () => {
 
 //#endregion
 
+const app = express();
+
 app.use((req, res, next) => {
     const subdomain = req.subdomains[0];
     req.subdomain = subdomain;
