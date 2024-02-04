@@ -27,7 +27,7 @@ const credentialsCV = {
   cert: fs.readFileSync('/etc/letsencrypt/live/cv.diru.dev/fullchain.pem'),
 };
 
-const serverSubdominio2 = https.createServer(credentialsCV, (req, res) => {
+const serverCV = https.createServer(credentialsCV, (req, res) => {
     res.end('Hola desde mi CV!');
 });
 
@@ -44,6 +44,6 @@ credentialsWWW.listen(PORT_WWW, () => {
   console.log(`Servidor HTTPS para WWW escuchando en el puerto: ${PORT_WWW}`);
 });
 
-serverSubdominio2.listen(PORT_CV, () => {
+serverCV.listen(PORT_CV, () => {
   console.log(`Servidor HTTPS para CV escuchando en el puerto: ${PORT_CV}`);
 });
