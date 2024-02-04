@@ -13,6 +13,7 @@ const optionsServer = {
 };
   
 const server = https.createServer(optionsServer, (req, res) => {
+    console.log(req.url);
     if (req.url === '/public/index.ejs') {
       // Sirve un archivo HTML cuando accedes a la ruta principal
       fs.readFile('', 'utf8', (err, data) => {
