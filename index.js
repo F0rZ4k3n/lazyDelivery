@@ -54,23 +54,9 @@ serverCV.listen(PORT_CV, () => {
 //#endregion
 
 const app = express();
-
-app.use((req, res, next) => {
-    const subdomain = req.subdomains[0];
-    req.subdomain = subdomain;
-    console.log(subdomain);
-    next();
-  });
+app.use(express.static("public"));
 
   // Rutas para diferentes subdominios
 app.get('/', (req, res) => {
-    res.send('Bienvenido al landing page principal');
+    res.render("index.ejs");
   });
-  
-app.get('/www', (req, res) => {
-    res.send('Bienvenido al subdominio www');
-});
-  
-app.get('/cv', (req, res) => {
-    res.send('Bienvenido al subdominio cv');
-});
