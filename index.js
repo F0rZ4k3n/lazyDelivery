@@ -7,9 +7,12 @@ const optionsServer = {
   };
   
   const server = https.createServer(optionsServer, (req, res) => {
-    // Lógica para el primer subdominio
-    res.end('Hola desde el server!');
-  });
+    // Obtener el subdominio del nombre del host
+    const subdomain = req.headers.host.split('.')[0];
+
+    // Lógica para el servidor principal
+    res.end(`Hola desde el servidor principal para ${subdomain}!`);
+});
 
 // Configuración para el primer subdominio
 const optionsSubdominio1 = {
@@ -18,8 +21,7 @@ const optionsSubdominio1 = {
 };
 
 const serverSubdominio1 = https.createServer(optionsSubdominio1, (req, res) => {
-  // Lógica para el primer subdominio
-  res.end('Hola desde WWW!');
+    res.end('Hola desde WWW!');
 });
 
 // Configuración para el segundo subdominio
@@ -29,8 +31,7 @@ const optionsSubdominio2 = {
 };
 
 const serverSubdominio2 = https.createServer(optionsSubdominio2, (req, res) => {
-  // Lógica para el segundo subdominio
-  res.end('Hola desde mi CV!');
+    res.end('Hola desde mi CV!');
 });
 
 // Escuchar en puertos específicos
@@ -39,7 +40,7 @@ const PORT_SUBDOMINIO1 = 443;
 const PORT_SUBDOMINIO2 = 444;  // Puedes usar un puerto diferente para cada subdominio
 
 server.listen(PORT_SERVER, () => {
-    console.log(`Servidor HTTPS para el servidor principal escuchando en el puerto: ${PORT_SUBDOMINIO1}`);
+    console.log(`Servidor HTTPS para el servidor principal escuchando en el puerto: ${PORT_SERVER}`);
   });
 
 serverSubdominio1.listen(PORT_SUBDOMINIO1, () => {
