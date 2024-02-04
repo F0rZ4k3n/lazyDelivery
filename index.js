@@ -11,6 +11,10 @@ const httpServer = http.createServer((req, res) => {
     res.end();
 });
 
+app.get("/", (req, res) => {
+    res.render("hello world!");
+})
+
 app.listen(80, () => {
 	console.log('HTTP Server running on port 80');
 });
