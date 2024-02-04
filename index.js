@@ -11,7 +11,23 @@ const optionsServer = {
 };
   
 const server = https.createServer(optionsServer, (req, res) => {
-    res.end("aqui estoy")
+    if (req.url === '/') {
+      // Sirve un archivo HTML cuando accedes a la ruta principal
+      fs.readFile('index.ejs', 'utf8', (err, data) => {
+        if (err) {
+          console.error(err);
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.end('Error interno del servidor');
+        } else {
+          res.writeHead(301, { "Location": `https://${req.headers['host']}${req.url}`});
+          res.end(data);
+        }
+      });
+    } else {
+      // Maneja otras rutas aquí, por ejemplo, puedes devolver un 404
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.end('Página no encontrada');
+    }
 });
 
 // Configuración para el WWW
