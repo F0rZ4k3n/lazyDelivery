@@ -4,6 +4,7 @@ import express from 'express'
 
 //#region Server Domains and Connections
 
+// Configuración para el Landing Page
 const optionsServer = {
     key: fs.readFileSync('/etc/letsencrypt/live/diru.dev/privkey.pem'),
     cert: fs.readFileSync('/etc/letsencrypt/live/diru.dev/fullchain.pem'),
@@ -13,7 +14,7 @@ const server = https.createServer(optionsServer, (req, res) => {
     res.end("aqui estoy")
 });
 
-// Configuración para el primer subdominio
+// Configuración para el WWW
 const credentialsServer = {
   key: fs.readFileSync('/etc/letsencrypt/live/www.diru.dev/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/www.diru.dev/fullchain.pem'),
@@ -23,7 +24,7 @@ const credentialsWWW = https.createServer(credentialsServer, (req, res) => {
     res.end('Hola desde WWW!');
 });
 
-// Configuración para el segundo subdominio
+// Configuración para el CV
 const credentialsCV = {
   key: fs.readFileSync('/etc/letsencrypt/live/cv.diru.dev/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/cv.diru.dev/fullchain.pem'),
