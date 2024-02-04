@@ -1,5 +1,5 @@
-const https = require('https');
-const fs = require('fs');
+import fs from 'fs'
+import https from 'https'
 
 const optionsServer = {
     key: fs.readFileSync('/etc/letsencrypt/live/diru.dev/privkey.pem'),
