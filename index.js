@@ -19,9 +19,7 @@ const credentialsServerWWW = {
     cert: fs.readFileSync('/etc/letsencrypt/live/www.diru.dev/fullchain.pem'),
 };
 
-const serverWWW = https.createServer(credentialsServerWWW, (req, res) => {
-    res.end('Hola desde WWW!');
-});
+const serverWWW = https.createServer(credentialsServerWWW, app);
 
 // Configuración para el CV
 const credentialsServerCV = {
@@ -29,9 +27,7 @@ const credentialsServerCV = {
     cert: fs.readFileSync('/etc/letsencrypt/live/cv.diru.dev/fullchain.pem'),
 };
 
-const serverCV = https.createServer(credentialsServerCV, (req, res) => {
-    res.end('Hola desde mi CV!');
-});
+const serverCV = https.createServer(credentialsServerWWW, app);
 
 // Escuchar en puertos específicos
 const PORT_SERVER = 443;
