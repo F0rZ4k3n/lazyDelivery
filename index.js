@@ -27,7 +27,7 @@ const credentialsServerCV = {
     cert: fs.readFileSync('/etc/letsencrypt/live/cv.diru.dev/fullchain.pem'),
 };
 
-const serverCV = https.createServer(credentialsServerWWW, app);
+const serverCV = https.createServer(credentialsServerCV, app);
 
 // Escuchar en puertos específicos
 const PORT_SERVER = 443;
