@@ -23,5 +23,5 @@ server.listen(PORT_SERVER, () => {
 
 // Rutas para diferentes subdominios
 app.get('/', (req, res) => {
-    res.render("index.ejs");
+    res.render("index.html");
 });
